@@ -9,8 +9,7 @@
         - name: get_universe
           apt_repository:
             repo: "deb http://us.archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }} universe"
-            state: present          
-
+            state: present
         - name: install extra pkg
           apt:
             name:
