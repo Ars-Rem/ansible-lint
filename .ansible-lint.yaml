@@ -1,5 +1,5 @@
 exclude_paths:
-- .github/
+  - .github/
 skip_list:
   - skip_this_tag
   - git-latest
