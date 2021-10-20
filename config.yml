@@ -19,18 +19,17 @@
               - gnupg
               - lsb-release
             update-cache: true
-            cache_valid_time: 86400        
+            cache_valid_time: 86400
         - name: Add Docker’s official GPG key
           apt_key:
             url: https://download.docker.com/linux/ubuntu/gpg
             state: present
-         
 
         - name: install ustable repo
           apt_repository:
             repo: > 
-              deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu 
-              {{ ansible_distribution_release }} stable 
+              deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu
+              {{ ansible_distribution_release }} stable
             state: present
             update-cache: true
             filename: docker
@@ -38,13 +37,13 @@
           apt:
             name: docker-ce
             update-cache: true
-         
+
         - name: check docker install and reboot
           service:
             name: docker
             state: restarted
             enabled: true
-      become: true     
+      become: true
     - name: get docker-compose
       block:
         - name: get last version dc
@@ -57,7 +56,7 @@
             url:  "https://github.com/docker/compose/releases/download/{{ page.json.tag_name }}/docker-compose-Linux-x86_64"
             dest: /usr/local/bin/docker-compose
             mode: 0755
-      become: true    
+      become: true
     - name: end installation
       become: true  
       block:
@@ -68,7 +67,3 @@
           append: true
       - name: reboot server
         reboot:
-
-
-
-        
