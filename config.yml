@@ -58,7 +58,7 @@
             mode: 0755
       become: true
     - name: end installation
-      become: true  
+      become: true
       block:
         - name: add user to docker-group
           user:
